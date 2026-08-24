@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b2d63">
+<meta name="description" content="Informasi Menu Hari Ini SPPG Parang Tambung">
+<title>Menu Hari Ini | SPPG Parang Tambung</title>
+<style>
+:root{
+  --navy:#0b2d63;
+  --navy2:#123e7a;
+  --blue:#eaf4ff;
+  --line:#d7e3f1;
+  --text:#17345d;
+  --muted:#6d7d92;
+  --red:#c91f2d;
+  --green:#1ca65a;
+  --white:#fff;
+  --shadow:0 12px 35px rgba(11,45,99,.09);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:#f5f8fc;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(1050px,calc(100% - 28px));margin:auto}
+.topbar{
+  background:var(--navy);
+  color:white;
+  padding:13px 0;
+}
+.topbar .inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand-mini{font-weight:800;letter-spacing:.02em}
+.badge{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:999px;
+  padding:7px 11px;
+  font-size:12px;
+}
+header{
+  background:linear-gradient(135deg,#0b2d63 0%,#174b91 100%);
+  color:white;
+  padding:48px 0 78px;
+}
+.hero{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:28px;
+  align-items:center;
+}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.78}
+h1{font-size:clamp(32px,6vw,58px);line-height:1.02;margin:10px 0 14px;letter-spacing:-.04em}
+.hero p{margin:0;max-width:650px;color:#dceaff;font-size:16px;line-height:1.65}
+.hero-logo{
+  width:130px;height:130px;border-radius:50%;
+  background:white;display:grid;place-items:center;
+  color:var(--navy);font-weight:900;text-align:center;
+  border:8px solid rgba(255,255,255,.18);
+  box-shadow:0 14px 35px rgba(0,0,0,.16);
+}
+.hero-logo span{font-size:13px;line-height:1.2}
+main{margin-top:-42px;padding-bottom:60px}
+.panel{
+  background:white;border:1px solid var(--line);border-radius:22px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.meta{
+  display:grid;grid-template-columns:repeat(3,1fr);
+}
+.meta-item{padding:22px;border-right:1px solid var(--line)}
+.meta-item:last-child{border-right:0}
+.meta-label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
+.meta-value{margin-top:7px;font-weight:800;font-size:16px}
+.grid{
+  display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.8fr);
+  gap:20px;margin-top:20px;
+}
+.card{padding:26px}
+.card h2{font-size:20px;margin:0 0 18px;letter-spacing:-.02em}
+.section-kicker{
+  color:var(--navy);font-size:12px;font-weight:900;
+  text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;
+}
+.menu-list{display:grid;gap:11px}
+.menu-row{
+  display:grid;grid-template-columns:130px 1fr;gap:18px;
+  padding:16px 0;border-bottom:1px dashed #cbd7e7;
+}
+.menu-row:last-child{border-bottom:0}
+.menu-type{font-size:13px;color:var(--muted);font-weight:800}
+.menu-name{font-size:17px;font-weight:800}
+.nutri{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.nutri-item{background:var(--blue);border-radius:14px;padding:14px}
+.nutri-item strong{display:block;font-size:19px}
+.nutri-item span{font-size:12px;color:var(--muted)}
+.info-box{
+  background:#f7faff;border:1px solid var(--line);
+  border-radius:16px;padding:17px;line-height:1.6;margin-top:14px
+}
+.warning{border:1px solid #f0aab0;background:#fff6f7}
+.warning h3{color:var(--red);margin:0 0 8px;font-size:16px}
+.success{border:1px solid #b9e6cc;background:#f4fff8}
+.success h3{color:#138447;margin:0 0 8px;font-size:16px}
+.qr{text-align:center}
+.qr img{width:min(240px,75%);aspect-ratio:1;border-radius:12px;border:12px solid white;box-shadow:0 4px 18px rgba(11,45,99,.12)}
+.qr p{font-size:12px;color:var(--muted);margin-bottom:0}
+.contact{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px
+}
+.contact-item{padding:15px;background:#f7faff;border-radius:14px}
+.contact-item b{display:block;margin-bottom:5px}
+footer{background:#082552;color:#d9e7fa;padding:30px 0}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+.footer-title{font-weight:900;color:white}
+.small{font-size:12px;color:#9db4d3;line-height:1.6}
+@media(max-width:760px){
+  .hero{grid-template-columns:1fr}
+  .hero-logo{width:90px;height:90px;border-width:5px}
+  .meta{grid-template-columns:1fr}
+  .meta-item{border-right:0;border-bottom:1px solid var(--line)}
+  .meta-item:last-child{border-bottom:0}
+  .grid{grid-template-columns:1fr}
+  .menu-row{grid-template-columns:105px 1fr}
+  .contact{grid-template-columns:1fr}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container inner">
+    <div class="brand-mini">SPPG Parang Tambung</div>
+    <div class="badge">Program Makan Bergizi Gratis</div>
+  </div>
+</div>
+
+<header>
+  <div class="container hero">
+    <div>
+      <div class="eyebrow">Informasi sajian</div>
+      <h1>Menu Bergizi<br>Hari Ini</h1>
+      <p>Lihat menu, informasi gizi, jadwal konsumsi, keamanan pangan, dan informasi penting SPPG Parang Tambung dalam satu halaman.</p>
+    </div>
+    <div class="hero-logo"><span>SPPG<br>PARANG<br>TAMBUNG<br>03</span></div>
+  </div>
+</header>
+
+<main>
+<div class="container">
+
+  <section class="panel">
+    <div class="meta">
+      <div class="meta-item">
+        <div class="meta-label">Tanggal penyajian</div>
+        <div class="meta-value">Jumat, 21 Agustus 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Kode sajian</div>
+        <div class="meta-value">MBG-2026-021</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Lokasi produksi</div>
+        <div class="meta-value">Parang Tambung</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="panel card">
+      <div class="section-kicker">Sajian lengkap</div>
+      <h2>Menu Hari Ini</h2>
+      <div class="menu-list">
+        <div class="menu-row"><div class="menu-type">Makanan pokok</div><div class="menu-name">Nasi Putih</div></div>
+        <div class="menu-row"><div class="menu-type">Lauk utama</div><div class="menu-name">Telur Kuah Gulai</div></div>
+        <div class="menu-row"><div class="menu-type">Lauk pendamping</div><div class="menu-name">Tempe Orek</div></div>
+        <div class="menu-row"><div class="menu-type">Sayur</div><div class="menu-name">Tumis Labusiam &amp; Wortel</div></div>
+      </div>
+
+      <div class="section-kicker" style="margin-top:28px">Informasi gizi per porsi</div>
+      <div class="nutri">
+        <div class="nutri-item"><strong>772,0</strong><span>kkal Energi — porsi besar</span></div>
+        <div class="nutri-item"><strong>588,7</strong><span>kkal Energi — porsi kecil</span></div>
+        <div class="nutri-item"><strong>29,1 g</strong><span>Protein — porsi besar</span></div>
+        <div class="nutri-item"><strong>21,1 g</strong><span>Protein — porsi kecil</span></div>
+        <div class="nutri-item"><strong>23,2 g</strong><span>Lemak — porsi besar</span></div>
+        <div class="nutri-item"><strong>16,9 g</strong><span>Lemak — porsi kecil</span></div>
+      </div>
+      <div class="small" style="margin-top:12px">Kandungan gizi dapat bervariasi sesuai bahan makanan yang digunakan.</div>
+    </section>
+
+    <aside class="panel card">
+      <div class="section-kicker">Akses informasi</div>
+      <h2>Barcode Menu</h2>
+      <div class="qr">
+        <img id="qr" alt="QR Code menu hari ini"
+          src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fikramzaky.github.io%2FSPPG-PARANG-TAMBUNG-MENU-HARI-INI%2F">
+        <p>Scan untuk membuka informasi menu.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="grid">
+    <section class="panel card">
+      <div class="section-kicker">Harap diperhatikan</div>
+      <h2>Jadwal &amp; Batas Konsumsi</h2>
+      <div class="info-box">
+        <b>Disarankan dikonsumsi maksimal 2 jam setelah makanan diterima.</b><br>
+        Simpan makanan dalam keadaan tertutup. Jangan dikonsumsi jika kemasan rusak, berbau tidak normal, atau melewati batas waktu.
+      </div>
+      <div class="success">
+        <h3>✓ Segera dikonsumsi setelah diterima</h3>
+        Utamakan keamanan, kebersihan, dan kualitas makanan.
+      </div>
+    </section>
+
+    <section class="panel card">
+      <div class="warning">
+        <h3>⚠ Dilarang membawa pulang makanan</h3>
+        Makanan disediakan khusus untuk dikonsumsi di tempat. Jangan membawa pulang makanan untuk menjaga keamanan pangan, kebersihan, dan kesehatan bersama.
+      </div>
+
+      <div class="section-kicker" style="margin-top:22px">Alergen &amp; catatan</div>
+      <div class="info-box">
+        <b>Perhatian alergi</b><br>
+        Menu dapat mengandung bahan seperti telur, kedelai, atau bahan lain sesuai komposisi. Jika memiliki alergi tertentu, konfirmasikan kepada petugas sebelum mengonsumsi.
+      </div>
+    </section>
+  </div>
+
+  <section class="panel card" style="margin-top:20px">
+    <div class="section-kicker">Diproduksi dan didistribusikan oleh</div>
+    <h2>SPPG Parang Tambung</h2>
+    <div class="contact">
+      <div class="contact-item">
+        <b>Asisten Lapangan</b>
+        Muh. Zulkifli<br>
+        <span class="small">+62 895-3356-56720</span>
+      </div>
+      <div class="contact-item">
+        <b>Ahli Gizi</b>
+        Gitarisa Sanita Nurhadi<br>
+        <span class="small">+62 897-9493-493</span>
+      </div>
+    </div>
+    <div class="small" style="margin-top:18px">
+      Satuan Pelayanan Pemenuhan Gizi · Parang Tambung, Makassar, Sulawesi Selatan
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-title">SPPG Parang Tambung 03</div>
+      <div class="small">Informasi menu MBG</div>
+    </div>
+    <div class="small">Pembaruan data: 21 Agustus 2026</div>
+  </div>
+</footer>
+
+<script>
+  // Tahun footer otomatis
+  document.querySelector('footer .small:last-child').textContent =
+    'Pembaruan data: 21 Agustus 2026';
+</script>
+</body>
+</html>
