@@ -547,7 +547,7 @@
 
       <script>
         const DATA_HARI_INI = {
-          tanggal: "24 Agustus 2026",
+          tanggal: "21 Agustus 2026",
 
           penerima: "KB Abadi",
 
@@ -713,83 +713,119 @@
 
           <p>
             Makanan ini disediakan khusus untuk dikonsumsi di tempat.
-            Dilarang membawa pulang makanan untuk menjaga keam
-      <!-- TANGGAL -->
-      <section class="date-card">
-        <div>
-          <div class="date-label">Tanggal Produksi</div>
-          <div class="date-value" id="tanggal"></div>
+            Dilarang membawa pulang makanan untuk menjaga keamanan pangan,
+            kebersihan, dan kesehatan bersama.
+          </p>
         </div>
-        <div class="calendar">▣</div>
       </section>
 
 
-      <!-- PENERIMA MANFAAT -->
-      <section class="section">
-        <div class="section-head">
-          <div class="section-icon">●●</div>
-          <h2>Penerima Manfaat</h2>
-        </div>
+      <!-- KONTAK -->
+      <section class="contact">
+        <div class="contact-head">☎ Jika Makanan Tidak Layak, Hubungi:</div>
 
-        <div style="padding:18px 20px;font-size:20px;font-weight:900;" id="penerima"></div>
+        <div class="contacts">
+
+          <div class="contact-item">
+            <div class="contact-role">Asisten Lapangan</div>
+            <div class="contact-name" id="namaAsisten"></div>
+            <a class="phone" id="nomorAsisten" href="#"></a>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-role">Ahli Gizi</div>
+            <div class="contact-name" id="namaAhliGizi"></div>
+            <a class="phone" id="nomorAhliGizi" href="#"></a>
+          </div>
+
+        </div>
       </section>
 
-
-      <!-- MENU -->
-      <section class="section">
-        <div class="section-head">
-          <div class="section-icon">🍽</div>
-          <h2>Menu Hari Ini</h2>
-        </div>
-
-        <ol class="menu-list" id="menuList"></ol>
-      </section>
+    </main>
 
 
-      <!-- KANDUNGAN GIZI -->
-      <section class="section">
-        <div class="section-head">
-          <div class="section-icon">♢</div>
-          <h2>Kandungan Gizi</h2>
-        </div>
+    <footer>
+      <div class="footer-title">SPPG Tamalate Parang Tambung 03</div>
+      Informasi menu dan kandungan gizi makanan.
+      <br>
+      <span id="footerDate"></span>
+    </footer>
 
-        <div class="nutrition-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Penerima Manfaat</th>
-                <th>Energi<br>(kkal)</th>
-                <th>Protein<br>(g)</th>
-                <th>Lemak<br>(g)</th>
-                <th>Karbohidrat<br>(g)</th>
-                <th>Serat<br>(g)</th>
-              </tr>
-            </thead>
-
-            <tbody id="giziTable"></tbody>
-          </table>
-        </div>
-
-        <p class="nutrition-note">
-          * Kandungan gizi dapat bervariasi sesuai bahan makanan yang digunakan.
-        </p>
-      </section>
-
-
-      <!-- INFO -->
-      <div class="info-grid">
-
-        <section class="info-card">
-          <div class="head">⏰ Baik Dikonsumsi Sebelum</div>
-          <div class="info-body">
-            <div class="time-main" </div>
   </div>
-</footer>
 
-<script>
-  // Tahun footer otomatis
-  document.querySelector('footer .small:last-child').textContent =
-    'Pembaruan data: 21 Agustus 2026';
-</script>
+
+  <script>
+    // ============================================================
+    // JANGAN EDIT BAGIAN INI
+    // Sistem otomatis menampilkan DATA_HARI_INI ke halaman.
+    // ============================================================
+
+    const d = DATA_HARI_INI;
+
+    document.getElementById("tanggal").textContent = d.tanggal;
+    document.getElementById("footerDate").textContent = d.tanggal;
+    document.getElementById("penerima").textContent = d.penerima;
+    document.getElementById("batasKonsumsi").textContent = d.batasKonsumsi;
+
+    const menuList = document.getElementById("menuList");
+
+    d.menu.forEach(item => {
+      const li = document.createElement("li");
+      li.className = "menu-item";
+      li.innerHTML = `<span class="menu-number"></span><span>${item}</span>`;
+      menuList.appendChild(li);
+    });
+
+    const giziTable = document.getElementById("giziTable");
+
+    const rows = [
+      ["besar", "large"],
+      ["kecil", "small"],
+      ["ibu", "mother"],
+      ["balita", "toddler"]
+    ];
+
+    rows.forEach(([key, css]) => {
+      const x = d.gizi[key];
+
+      const tr = document.createElement("tr");
+
+      tr.innerHTML = `
+        <td class="${css}">
+          ${x.label}
+          ${x.keterangan ? `<br><small style="font-weight:600;color:#718096">${x.keterangan}</small>` : ""}
+        </td>
+        <td>${x.energi}</td>
+        <td>${x.protein}</td>
+        <td>${x.lemak}</td>
+        <td>${x.karbohidrat}</td>
+        <td>${x.serat}</td>
+      `;
+
+      giziTable.appendChild(tr);
+    });
+
+    function setContact(elementId, value, phone){
+      const el = document.getElementById(elementId);
+      el.textContent = value;
+      el.href = "https://wa.me/" + phone.replace(/\D/g, "");
+    }
+
+    document.getElementById("namaAsisten").textContent = d.kontak.asisten.nama;
+    document.getElementById("namaAhliGizi").textContent = d.kontak.ahliGizi.nama;
+
+    setContact(
+      "nomorAsisten",
+      d.kontak.asisten.nomor,
+      d.kontak.asisten.nomor
+    );
+
+    setContact(
+      "nomorAhliGizi",
+      d.kontak.ahliGizi.nomor,
+      d.kontak.ahliGizi.nomor
+    );
+  </script>
+
 </body>
 </html>
