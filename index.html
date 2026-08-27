@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#092b63">
+
+<title>Menu Hari Ini | SPPG Tamalate Parang Tambung 03</title>
+
+<style>
+*{box-sizing:border-box}
+
+:root{
+--navy:#092b63;
+--blue:#2d8ed8;
+--light:#eef7ff;
+--line:#d9e7f5;
+--text:#102d57;
+--muted:#6b7d94;
+--red:#d32632;
+--red-light:#fff2f3;
+}
+
+body{
+margin:0;
+background:#edf3f9;
+font-family:Arial,Helvetica,sans-serif;
+color:var(--text);
+}
+
+.page{
+max-width:980px;
+margin:auto;
+background:white;
+min-height:100vh;
+box-shadow:0 0 35px rgba(9,43,99,.08);
+overflow:hidden;
+}
+
+/* HEADER */
+
+header{
+position:relative;
+overflow:hidden;
+text-align:center;
+padding:25px 20px 28px;
+background:linear-gradient(#fff,#f6fbff);
+}
+
+header:before{
+content:"";
+position:absolute;
+left:-10%;
+right:-10%;
+top:-115px;
+height:180px;
+background:var(--navy);
+border-radius:0 0 50% 50%;
+}
+
+header:after{
+content:"";
+position:absolute;
+left:-8%;
+right:-8%;
+top:-88px;
+height:165px;
+border-bottom:9px solid #8bc9ef;
+border-radius:0 0 50% 50%;
+}
+
+.header-content{
+position:relative;
+z-index:2;
+}
+
+.logo{
+width:105px;
+height:105px;
+object-fit:contain;
+margin:auto;
+display:block;
+filter:drop-shadow(0 6px 10px rgba(0,0,0,.15));
+}
+
+.badge{
+display:inline-block;
+margin-top:12px;
+padding:7px 15px;
+border-radius:30px;
+background:var(--navy);
+color:white;
+font-size:11px;
+font-weight:bold;
+letter-spacing:1px;
+}
+
+h1{
+margin:10px 0 0;
+font-size:clamp(28px,6vw,48px);
+line-height:1.05;
+color:var(--navy);
+letter-spacing:-1px;
+}
+
+.subtitle{
+margin:10px 0 0;
+font-size:14px;
+font-weight:bold;
+color:#49627f;
+}
+
+/* CONTENT */
+
+main{
+padding:0 20px 30px;
+}
+
+.card{
+background:white;
+border:1px solid var(--line);
+border-radius:22px;
+margin-top:18px;
+overflow:hidden;
+box-shadow:0 6px 20px rgba(9,43,99,.05);
+}
+
+.card-title{
+background:var(--navy);
+color:white;
+padding:14px 18px;
+text-align:center;
+font-size:18px;
+font-weight:900;
+}
+
+.card-body{
+padding:18px;
+}
+
+/* DATE */
+
+.date-box{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+padding:17px;
+background:var(--light);
+border:1px solid #c5def5;
+border-radius:18px;
+margin-top:0;
+}
+
+.date-label{
+font-size:11px;
+font-weight:bold;
+color:var(--muted);
+text-transform:uppercase;
+letter-spacing:1px;
+}
+
+.date{
+font-size:20px;
+font-weight:900;
+color:var(--navy);
+margin-top:3px;
+}
+
+.date-icon{
+width:50px;
+height:50px;
+background:var(--navy);
+color:white;
+border-radius:14px;
+display:grid;
+place-items:center;
+font-size:23px;
+}
+
+/* MENU */
+
+.menu{
+padding:0;
+margin:0;
+list-style:none;
+counter-reset:item;
+}
+
+.menu li{
+counter-increment:item;
+display:flex;
+align-items:center;
+gap:14px;
+padding:15px 18px;
+border-bottom:1px solid #e7eef6;
+font-size:17px;
+font-weight:800;
+}
+
+.menu li:last-child{
+border-bottom:0;
+}
+
+.menu-number{
+width:35px;
+height:35px;
+flex:0 0 35px;
+display:grid;
+place-items:center;
+background:var(--light);
+color:var(--navy);
+border-radius:50%;
+font-size:14px;
+font-weight:900;
+}
+
+.menu-number:before{
+content:counter(item);
+}
+
+/* PENERIMA */
+
+.receiver{
+padding:18px;
+font-size:21px;
+font-weight:900;
+color:var(--navy);
+}
+
+/* GIZI */
+
+.table-wrapper{
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:650px;
+}
+
+th,td{
+border:1px solid #cbdbea;
+padding:12px 8px;
+text-align:center;
+}
+
+th{
+background:#edf6fe;
+font-size:11px;
+color:var(--navy);
+}
+
+td{
+font-size:14px;
+font-weight:800;
+}
+
+td:first-child{
+text-align:left;
+background:#f8fbff;
+font-weight:900;
+}
+
+.note{
+padding:0 18px 16px;
+margin:0;
+font-size:11px;
+color:var(--muted);
+font-style:italic;
+}
+
+/* INFO */
+
+.info-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+.info-content{
+padding:18px;
+}
+
+.info-big{
+font-size:21px;
+font-weight:900;
+color:var(--navy);
+}
+
+.info-small{
+font-size:13px;
+color:var(--muted);
+margin-top:5px;
+}
+
+/* WARNING */
+
+.warning{
+margin-top:18px;
+border:2px solid var(--red);
+border-radius:22px;
+overflow:hidden;
+background:var(--red-light);
+}
+
+.warning-title{
+background:var(--red);
+color:white;
+padding:13px 16px;
+font-weight:900;
+text-align:center;
+}
+
+.warning-body{
+padding:18px;
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.warning-icon{
+width:65px;
+height:65px;
+border:4px solid var(--red);
+border-radius:50%;
+display:grid;
+place-items:center;
+font-size:28px;
+color:var(--red);
+flex:0 0 65px;
+}
+
+.warning-body p{
+margin:0;
+font-size:14px;
+font-weight:700;
+}
+
+/* CONTACT */
+
+.contact-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+}
+
+.contact-item{
+padding:18px;
+}
+
+.contact-item+.contact-item{
+border-left:1px solid var(--line);
+}
+
+.contact-role{
+font-size:11px;
+color:var(--muted);
+font-weight:bold;
+text-transform:uppercase;
+}
+
+.contact-name{
+font-weight:900;
+font-size:16px;
+margin-top:3px;
+}
+
+.whatsapp{
+display:inline-block;
+margin-top:8px;
+text-decoration:none;
+color:#159447;
+font-weight:900;
+}
+
+/* FOOTER */
+
+footer{
+background:var(--navy);
+color:#dcecff;
+text-align:center;
+padding:22px;
+font-size:12px;
+}
+
+.footer-title{
+font-weight:900;
+color:white;
+font-size:16px;
+margin-bottom:4px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+header{
+padding:21px 15px 25px;
+}
+
+.logo{
+width:88px;
+height:88px;
+}
+
+h1{
+font-size:30px;
+}
+
+main{
+padding:0 13px 22px;
+}
+
+.info-grid{
+grid-template-columns:1fr;
+}
+
+.contact-grid{
+grid-template-columns:1fr;
+}
+
+.contact-item+.contact-item{
+border-left:0;
+border-top:1px solid var(--line);
+}
+
+.warning-body{
+align-items:flex-start;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<header>
+
+<div class="header-content">
+
+<!-- LOGO -->
+<img src="logo-bgn.png" class="logo" alt="Badan Gizi Nasional">
+
+<div class="badge">
+INFORMASI MAKANAN BERGIZI
+</div>
+
+<h1>
+SPPG TAMALATE<br>
+PARANG TAMBUNG 03
+</h1>
+
+<div class="subtitle">
+Yayasan Alumni Pesantren IMMIM
+</div>
+
+</div>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================================================
+     DATA HARI INI
+
+     CUKUP EDIT BAGIAN INI SETIAP HARI.
+     ========================================================= -->
+
+<script>
+
+const DATA_HARI_INI = {
+
+tanggal: "21 Agustus 2026",
+
+penerima: "KB Abadi",
+
+menu: [
+
+"Nasi Putih",
+
+"Telur Kuah Gulai",
+
+"Tempe Orek",
+
+"Tumis Labu Siam dan Wortel"
+
+],
+
+gizi: {
+
+besar:{
+nama:"Porsi Besar",
+energi:"772,0",
+protein:"29,1",
+lemak:"23,2",
+karbohidrat:"120,1",
+serat:"5,6"
+},
+
+kecil:{
+nama:"Porsi Kecil",
+energi:"588,7",
+protein:"21,1",
+lemak:"16,9",
+karbohidrat:"95,9",
+serat:"3,8"
+},
+
+ibu:{
+nama:"Bumil / Busui",
+energi:"772,0",
+protein:"29,1",
+lemak:"23,2",
+karbohidrat:"120,1",
+serat:"5,6"
+},
+
+balita:{
+nama:"Balita",
+energi:"575,8",
+protein:"21,1",
+lemak:"16,9",
+karbohidrat:"95,9",
+serat:"3,8"
+}
+
+},
+
+batasKonsumsi:"Maks. 2 jam setelah diterima",
+
+kontak:{
+
+asisten:{
+nama:"Muh. Zulkifli",
+nomor:"+62 895-3356-56720"
+},
+
+ahliGizi:{
+nama:"Gitarisa Sanita Nurhadi",
+nomor:"+62 897-9493-493"
+}
+
+}
+
+};
+
+</script>
+
+
+<!-- TANGGAL -->
+
+<div class="date-box">
+
+<div>
+
+<div class="date-label">
+Tanggal Produksi
+</div>
+
+<div class="date" id="tanggal">
+</div>
+
+</div>
+
+<div class="date-icon">
+▣
+</div>
+
+</div>
+
+
+<!-- PENERIMA -->
+
+<section class="card">
+
+<div class="card-title">
+PENERIMA MANFAAT
+</div>
+
+<div
+class="receiver"
+id="penerima">
+</div>
+
+</section>
+
+
+<!-- MENU -->
+
+<section class="card">
+
+<div class="card-title">
+🍽️ MENU HARI INI
+</div>
+
+<ol
+class="menu"
+id="menuList">
+</ol>
+
+</section>
+
+
+<!-- GIZI -->
+
+<section class="card">
+
+<div class="card-title">
+🌿 KANDUNGAN GIZI
+</div>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Penerima Manfaat
+</th>
+
+<th>
+Energi<br>(kkal)
+</th>
+
+<th>
+Protein<br>(g)
+</th>
+
+<th>
+Lemak<br>(g)
+</th>
+
+<th>
+Karbohidrat<br>(g)
+</th>
+
+<th>
+Serat<br>(g)
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="giziTable">
+</tbody>
+
+</table>
+
+</div>
+
+<p class="note">
+* Kandungan gizi dapat bervariasi sesuai bahan makanan yang digunakan.
+</p>
+
+</section>
+
+
+<!-- INFORMASI -->
+
+<div class="info-grid">
+
+<section class="card">
+
+<div class="card-title">
+⏰ BAIK DIKONSUMSI SEBELUM
+</div>
+
+<div class="info-content">
+
+<div
+class="info-big"
+id="batasKonsumsi">
+</div>
+
+<div class="info-small">
+Dihitung setelah makanan diterima.
+</div>
+
+</div>
+
+</section>
+
+
+<section class="card">
+
+<div class="card-title">
+🍴 KETENTUAN KONSUMSI
+</div>
+
+<div class="info-content">
+
+<div class="info-small"
+style="font-size:15px;font-weight:700;color:#304b70">
+
+Makanan disediakan untuk dikonsumsi
+di tempat dan sebaiknya segera
+dikonsumsi setelah diterima.
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- WARNING -->
+
+<section class="warning">
+
+<div class="warning-title">
+
+⚠️ DILARANG MEMBAWA PULANG MAKANAN
+
+</div>
+
+<div class="warning-body">
+
+<div class="warning-icon">
+✕
+</div>
+
+<p>
+
+Makanan ini disediakan khusus untuk
+dikonsumsi di tempat. Dilarang membawa
+pulang makanan untuk menjaga keamanan
+pangan, kebersihan, dan kesehatan bersama.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- KONTAK -->
+
+<section class="card">
+
+<div class="card-title">
+☎️ KONTAK LAYANAN
+</div>
+
+<div class="contact-grid">
+
+<div class="contact-item">
+
+<div class="contact-role">
+Asisten Lapangan
+</div>
+
+<div
+class="contact-name"
+id="namaAsisten">
+</div>
+
+<a
+class="whatsapp"
+id="nomorAsisten"
+target="_blank">
+WhatsApp →
+</a>
+
+</div>
+
+
+<div class="contact-item">
+
+<div class="contact-role">
+Ahli Gizi
+</div>
+
+<div
+class="contact-name"
+id="namaAhliGizi">
+</div>
+
+<a
+class="whatsapp"
+id="nomorAhliGizi"
+target="_blank">
+WhatsApp →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+<div class="footer-title">
+SPPG Tamalate Parang Tambung 03
+</div>
+
+Informasi menu harian dan kandungan gizi makanan.
+
+<br>
+
+<span id="footerDate"></span>
+
+</footer>
+
+
+</div>
+
+
+<script>
+
+/* ==========================================================
+   SISTEM WEBSITE
+   TIDAK PERLU DIUBAH
+   ========================================================== */
+
+const d = DATA_HARI_INI;
+
+
+/* TANGGAL */
+
+document.getElementById("tanggal").textContent =
+d.tanggal;
+
+document.getElementById("footerDate").textContent =
+d.tanggal;
+
+
+/* PENERIMA */
+
+document.getElementById("penerima").textContent =
+d.penerima;
+
+
+/* BATAS KONSUMSI */
+
+document.getElementById("batasKonsumsi").textContent =
+d.batasKonsumsi;
+
+
+/* MENU */
+
+const menuList =
+document.getElementById("menuList");
+
+d.menu.forEach(item=>{
+
+const li =
+document.createElement("li");
+
+li.innerHTML =
+`<span class="menu-number"></span>
+ <span>${item}</span>`;
+
+menuList.appendChild(li);
+
+});
+
+
+/* GIZI */
+
+const giziTable =
+document.getElementById("giziTable");
+
+
+const daftarGizi = [
+
+d.gizi.besar,
+
+d.gizi.kecil,
+
+d.gizi.ibu,
+
+d.gizi.balita
+
+];
+
+
+daftarGizi.forEach(x=>{
+
+const tr =
+document.createElement("tr");
+
+tr.innerHTML = `
+
+<td>
+${x.nama}
+</td>
+
+<td>
+${x.energi}
+</td>
+
+<td>
+${x.protein}
+</td>
+
+<td>
+${x.lemak}
+</td>
+
+<td>
+${x.karbohidrat}
+</td>
+
+<td>
+${x.serat}
+</td>
+
+`;
+
+giziTable.appendChild(tr);
+
+});
+
+
+/* KONTAK */
+
+document.getElementById("namaAsisten").textContent =
+d.kontak.asisten.nama;
+
+document.getElementById("namaAhliGizi").textContent =
+d.kontak.ahliGizi.nama;
+
+
+document.getElementById("nomorAsisten").textContent =
+d.kontak.asisten.nomor + "  →";
+
+document.getElementById("nomorAsisten").href =
+"https://wa.me/" +
+d.kontak.asisten.nomor.replace(/\D/g,"");
+
+
+document.getElementById("nomorAhliGizi").textContent =
+d.kontak.ahliGizi.nomor + "  →";
+
+document.getElementById("nomorAhliGizi").href =
+"https://wa.me/" +
+d.kontak.ahliGizi.nomor.replace(/\D/g,"");
+
+</script>
+
+</body>
+</html>
